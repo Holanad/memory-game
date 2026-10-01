@@ -1,0 +1,42 @@
+[
+  {
+    "number": 1,
+    "name": "Error",
+    "image": "assets/img/person/error.png"
+  },
+  {
+    "number": 2,
+    "name": "Fine",
+    "image": "assets/img/person/fine.png"
+  },
+  {
+    "number": 3,
+    "name": "Hi",
+    "image": "assets/img/person/hi.png"
+  },
+  {
+    "number": 5,
+    "name": "Money",
+    "image": "assets/img/person/money.png"
+  },
+  {
+    "number": 6,
+    "name": "Say",
+    "image": "assets/img/person/say.png"
+  },
+  {
+    "number": 7,
+    "name": "Superman",
+    "image": "assets/img/person/superman.png"
+  },
+  {
+    "number": 7,
+    "name": "Wanted",
+    "image": "assets/img/person/wanted.png"
+  },
+  {
+    "number": 7,
+    "name": "Welcome",
+    "image": "assets/img/person/welcome.png"
+  }
+]
