@@ -541,4 +541,160 @@ a, span, p, input, button, select, option, textarea, label, blockquote {
      object-fit: cover;
   display: block;
 }
+
+.popup {
+  background: rgba(9, 9, 9, 0.3);
+  overflow: auto;
+  padding: 50px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1010;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.popup.open {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+.popup-wrapper {
+  position: relative;
+  width: 687px;
+  background: #fff;
+  margin: auto;
+}
+
+.popup-header {
+  background: #FFDA1F;
+  text-align: center;
+  padding: 16px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.popup-body {
+  padding: 30px 50px;
+}
+
+.popup-body__title {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  white-space: pre-line;
+}
+
+.popup-body-result {
+  margin: 36px 0;
+  position: relative;
+}
+
+.popup-body-result-person {
+  position: absolute;
+  right: 0;
+  width: 160px;
+  z-index: 0;
+  height: 160px;
+  top: 0;
+}
+
+.popup-body-result-person.normal {
+  position: static;
+  display: block;
+  margin: 15px auto;
+}
+
+.popup-body-result__count {
+  border-radius: 50%;
+  background: #FFDA1F;
+  width: 100px;
+  font-size: 48px;
+  font-weight: 700;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.popup-body-result__text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.popup-body-table-head {
+  background: #FFDA1F;
+  border: 1px solid #1A1C1E;
+}
+
+.popup-body-table-inner {
+  border: 1px solid #1A1C1E;
+  border-top: unset;
+}
+
+.popup-body-table-inner-line:not(:last-child) {
+  border-bottom: 1px solid #1A1C1E;
+}
+
+.popup-body-table-cell {
+  padding: 10px;
+  text-align: center;
+}
+
+.popup-body-table-cell:nth-child(1) {
+  width: 20%;
+}
+
+.popup-body-table-cell:nth-child(2) {
+  width: 60%;
+}
+
+.popup-body-table-cell:nth-child(3) {
+  width: 20%;
+}
+
+.popup-body-table-cell__text {
+  font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.popup-body-table-cell:not(:last-child) {
+  border-right: 1px solid #1A1C1E;
+}
+
+.popup-body-panel {
+  text-align: center;
+}
+
+.popup-body-panel__text {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.popup-body-panel-btns {
+  margin-top: 20px;
+}
+
+.popup-body-panel__button {
+  width: 100%;
+  padding: 16px;
+}
+
+.popup-body-panel__button:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.popup-body-panel__button:hover {
+  background: #dddddd;
+}
 /*# sourceMappingURL=main.css.map */

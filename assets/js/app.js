@@ -47,7 +47,8 @@ const settingsHeader = (component) => {
 }
 
 const settingsGame = (component) => {
-    let gameCountResult = component.querySelector('.count-result span');
+    let gameCountResult = component.querySelector('.count-result span.count');
+    let gameCountSteps = component.querySelector('.count-steps span');
     
     const gameListElem = component.querySelector('.game-list');
     const gameCardsElems = component.querySelectorAll('.game-card');
@@ -75,10 +76,9 @@ const settingsGame = (component) => {
                         activeElems.forEach((e) => {
                             e.classList.add('disabled');
                         })
-                        console.log(gameCountResult.textContent++)
-                        //gameCountResult.textContent = Number(gameCountResult.textContent)++;
+                        gameCountResult.textContent++;
                     } else {
-                        console.log('не ура')
+                        gameCountSteps.textContent++;
                     }
                 }
             })
@@ -240,9 +240,21 @@ const gameComponent = (arrayGame) => {
     );
     const gamePanelTextTwoSpan = createComponent(
         document.createElement("span"), 
-        [],
+        ['count'],
         {},
         '0'
+    );
+    const gamePanelTextTwoSeparator = createComponent(
+        document.createElement("span"), 
+        [],
+        {},
+        ' / '
+    );
+    const gamePanelTextTwoSpanAll = createComponent(
+        document.createElement("span"), 
+        ['all'],
+        {},
+        '8'
     );
     const gameBlock = createComponent(
         document.createElement("div"), 
@@ -263,6 +275,8 @@ const gameComponent = (arrayGame) => {
     
     gamePanel.append(gamePanelTextTwo);
     gamePanelTextTwo.append(gamePanelTextTwoSpan);
+    gamePanelTextTwo.append(gamePanelTextTwoSeparator);
+    gamePanelTextTwo.append(gamePanelTextTwoSpanAll);
     
 
     gameWrapper.append(gameBlock);
@@ -311,10 +325,208 @@ const gameComponent = (arrayGame) => {
     return game;
 }
 
+const modalComponent = () => {
+    const popup = createComponent(
+        document.createElement('div'),
+        ['popup', 'open']
+    )
+    const popupWrapper = createComponent(
+        document.createElement('div'),
+        ['popup-wrapper']
+    )
+    const popupHeader = createComponent(
+        document.createElement('p'),
+        ['popup-header']
+    )
+    const popupBody = createComponent(
+        document.createElement('div'),
+        ['popup-body']
+    )
+    const popupBodyTitle = createComponent(
+        document.createElement('p'),
+        ['popup-body__title'],
+        {},
+        'Для победы Вам понадобилось'
+    )
+    const popupBodyResult = createComponent(
+        document.createElement('div'),
+        ['popup-body-result']
+    )
+    const popupBodyResultImg = createComponent(
+        document.createElement('img'),
+        ['popup-body-result-person'],
+        {
+            src: 'assets/img/person/superman.png',
+            alt: 'RS School Person'
+        }
+    )
+    const popupBodyResultCount = createComponent(
+        document.createElement('p'),
+        ['popup-body-result__count', 'f-center-center'],
+        {},
+        '34'
+    )
+    const popupBodyResultText = createComponent(
+        document.createElement('p'),
+        ['popup-body-result__text'],
+        {},
+        'Хода(ов)'
+    )
+    const popupBodyPanel = createComponent(
+        document.createElement('div'),
+        ['popup-body-panel'],
+    )
+    const popupBodyPanelText = createComponent(
+        document.createElement('p'),
+        ['popup-body-panel__text'],
+        {},
+        'Попробуем еще раз?'
+    )
+    const popupBodyPanelBtns = createComponent(
+        document.createElement('div'),
+        ['popup-body-panel-btns'],
+    )
+    const popupBodyPanelButtonNewGame = createComponent(
+        document.createElement('button'),
+        ['popup-body-panel__button', 'button', 'new-game'],
+        {},
+        'Новая игра'
+    )
+    const popupBodyPanelButtonClose = createComponent(
+        document.createElement('button'),
+        ['popup-body-panel__button', 'button', 'close-popup'],
+        {},
+        'Закрыть'
+    )
+
+    popup.append(popupWrapper);
+
+    const modalWin = () => {
+        
+        popupWrapper.append(popupHeader);
+        popupHeader.textContent = 'Победаааа!!!';
+
+        popupWrapper.append(popupBody);
+
+        popupBody.append(popupBodyTitle);
+        popupBody.append(popupBodyResult);
+        popupBody.append(popupBodyPanel);
+
+        popupBodyResult.append(popupBodyResultCount);
+        popupBodyResult.append(popupBodyResultText);
+        popupBodyResult.append(popupBodyResultImg);
+        
+
+        popupBodyPanel.append(popupBodyPanelText);
+        popupBodyPanel.append(popupBodyPanelBtns);
+        popupBodyPanelBtns.append(popupBodyPanelButtonNewGame);
+        popupBodyPanelBtns.append(popupBodyPanelButtonClose);
+    }
+    const modalTable = () => {
+
+        const popupBodyTable = createComponent(
+            document.createElement('div'),
+            ['popup-body-table'],
+        )
+        const popupBodyTableHead = createComponent(
+            document.createElement('div'),
+            ['popup-body-table-head', 'f-center'],
+        )
+        const popupBodyTableBody = createComponent(
+            document.createElement('div'),
+            ['popup-body-table-inner'],
+        )
+
+        popup.append(popupWrapper);
+        
+        popupWrapper.append(popupHeader);
+        popupHeader.textContent = 'Таблица лидеров';
+        
+        popupWrapper.append(popupBody);
+        
+
+        let qwe = true;
+
+        if(qwe) {
+            popupBody.append(popupBodyTable);
+
+            popupBodyTable.append(popupBodyTableHead);
+            let headTable = ['Место', 'Количество ходов', 'Дата']
+            for(let i = 0; i < headTable.length; i++) {
+                const popupBodyTableCell = createComponent(
+                    document.createElement('div'),
+                    ['popup-body-table-cell', 'f-center-center'],
+                )
+
+                const popupBodyTableCellText = createComponent(
+                    document.createElement('p'),
+                    ['popup-body-table-cell__text'],
+                    {},
+                    headTable[i]
+                )
+                
+                popupBodyTableHead.append(popupBodyTableCell);
+                popupBodyTableCell.append(popupBodyTableCellText);
+            }
+
+            popupBodyTable.append(popupBodyTableBody);
+
+            for(let i = 0; i < 10; i++) {
+                const popupBodyTableBodyLine = createComponent(
+                    document.createElement('div'),
+                    ['popup-body-table-inner-line', 'flex'],
+                )
+                popupBodyTableBody.append(popupBodyTableBodyLine);
+
+                for(let j = 0; j < 3; j++) {
+                    if(j == 0) {
+                        text = i;
+                        text++
+                    } else {
+                        text = '-';
+                    }
+
+                    const popupBodyTableCell = createComponent(
+                        document.createElement('div'),
+                        ['popup-body-table-cell', 'f-center-center']
+                    )
+
+                    const popupBodyTableCellText = createComponent(
+                        document.createElement('p'),
+                        ['popup-body-table-cell__text'],
+                        {},
+                        text
+                    )
+
+                    popupBodyTableBodyLine.append(popupBodyTableCell);
+                    popupBodyTableCell.append(popupBodyTableCellText);
+                }
+
+            }
+            
+        } else {
+            popupBody.append(popupBodyResultImg);
+            popupBodyResultImg.classList.add('normal')
+            popupBodyResultImg.setAttribute('src', 'assets/img/person/fine.png');
+            popupBody.append(popupBodyTitle);
+            popupBodyTitle.textContent = 'Результаты пока отсутствуют :( \n Будь первым';
+
+            
+        }
+        
+        popupBody.append(popupBodyPanel);
+        popupBodyPanel.append(popupBodyPanelBtns);
+        popupBodyPanelBtns.append(popupBodyPanelButtonClose);
+    }
+    modalTable()
+
+    return popup;
+}
+
 
 document.body.append(
     headerComponent(),
-    gameComponent(preparationGame())
+    gameComponent(preparationGame()),
 );
 
 /*
