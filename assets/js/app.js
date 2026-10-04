@@ -9,7 +9,7 @@ const dateCurrent = () => {
 
     return `${day}.${month}.${year}`;
 }
-
+/*
 setTimeout(() => {
     document.body.append(
         modalComponent({
@@ -17,7 +17,7 @@ setTimeout(() => {
             resultCount: 3
         })
     );
-}, 700);
+}, 700);*/
 const preparationGame = () => {
     let arrayImage = [
         'assets/img/person/error.png',
