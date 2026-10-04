@@ -9,15 +9,15 @@ const dateCurrent = () => {
 
     return `${day}.${month}.${year}`;
 }
-/*
+
 setTimeout(() => {
     document.body.append(
         modalComponent({
             type: 'win',
-            resultCount: 13
+            resultCount: 3
         })
     );
-}, 700);*/
+}, 700);
 const preparationGame = () => {
     let arrayImage = [
         'assets/img/person/error.png',
@@ -509,7 +509,7 @@ const modalComponent = ({
 
         
         console.log([...resultGame]);
-        if(resultGame.length >= 10) {
+        /*if(resultGame.length >= 10) {
             for(let i = 0; i < resultGame.length; i++) {
                 if (resultCount == resultGame[i].steps) {
                     break;
@@ -529,6 +529,48 @@ const modalComponent = ({
                 steps: Number(resultCount),
                 date: dateCurrent(),
             })
+        }*/
+       if(resultGame.length >= 10) {
+            for(let i = 0; i < resultGame.length; i++) {
+                if (resultCount == resultGame[i].steps) {
+                    resultGame.splice(i, 1, {
+                        steps: Number(resultCount),
+                        date: dateCurrent(),
+                    })
+                    if(resultGame.length > 10) {
+                        resultGame.pop();
+                    }
+                    break;
+                }else if(resultCount <= resultGame[i].steps) {
+                    resultGame.splice(i, 0, {
+                        steps: Number(resultCount),
+                        date: dateCurrent(),
+                    })
+                    if(resultGame.length > 10) {
+                        resultGame.pop();
+                    }
+                    break;
+                }
+            }
+        } else {
+            console.log(66)
+            let append = 0;
+            for(let i = 0; i < resultGame.length; i++) {
+                if (resultCount == resultGame[i].steps) {
+                    append++;
+                    resultGame.splice(i, 1, {
+                        steps: Number(resultCount),
+                        date: dateCurrent(),
+                    })
+                    break;
+                }
+            }
+            if(append != 1) {
+                resultGame.push({
+                    steps: Number(resultCount),
+                    date: dateCurrent(),
+                })
+            }
         }
         localStorage.setItem('memoryLeaders', JSON.stringify(resultGame));
     }
