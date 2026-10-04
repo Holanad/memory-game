@@ -1,6 +1,23 @@
 
 //function
+const dateCurrent = () => {
+    const date = new Date();
 
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}.${month}.${year}`;
+}
+
+setTimeout(() => {
+    document.body.append(
+        modalComponent({
+            type: 'win',
+            resultCount: 13
+        })
+    );
+}, 700);
 const preparationGame = () => {
     let arrayImage = [
         'assets/img/person/error.png',
@@ -36,14 +53,36 @@ const preparationGame = () => {
 
 const settingsHeader = (component) => {
     const newGameButtonElem = component.querySelector('.start-game');
+    const leadersTableGameButtonElem = component.querySelector('.table-game');
     const newGameButton = () => {
-        /*newGameButtonElem.addEventListener('click', (e) => {
-            console.log(123)
-        })*/
-       console.log(newGameButtonElem)
+        newGameButtonElem.addEventListener('click', (e) => {
+            startGame()
+        })
         
+    //
     }
     newGameButton()
+
+    const openLeadersTable = () => {
+        leadersTableGameButtonElem.addEventListener('click', () => {
+            document.body.append(
+                modalComponent({
+                    type: 'leaders'
+                })
+            );
+        })
+    }
+    openLeadersTable()
+}
+
+const startGame = () => {
+    currentGame.remove()
+
+    currentGame = gameComponent(preparationGame());
+
+    document.body.append(
+        currentGame,
+    );
 }
 
 const settingsGame = (component) => {
@@ -72,13 +111,13 @@ const settingsGame = (component) => {
                             gameListElem.classList.remove('blocked');
                         }, 800);
                     })
+                    gameCountSteps.textContent++;
                     if(resultCards[0] == resultCards[1]) {
                         activeElems.forEach((e) => {
                             e.classList.add('disabled');
                         })
                         gameCountResult.textContent++;
-                    } else {
-                        gameCountSteps.textContent++;
+                        endGame(gameCountSteps.textContent);
                     }
                 }
             })
@@ -86,8 +125,43 @@ const settingsGame = (component) => {
     }
     showCardUser();
 
+    const endGame = (countSteps) => {
+        if(Number(gameCountResult.textContent) == 8) {
+            setTimeout(() => {
+                document.body.append(
+                    modalComponent({
+                        type: 'win',
+                        resultCount: countSteps
+                    })
+                );
+            }, 700);
+        }
+    }
 }
 
+const settingsModal = (component) => {
+    const newGameButton = component.querySelector('.new-game');
+    const closeButton = component.querySelector('.close-popup');
+
+    if(closeButton) {
+        const closeModal = () => {
+            closeButton.addEventListener('click', () => {
+                component.remove()
+            })
+        }
+        closeModal();
+    }
+
+    if(newGameButton) {
+        const newGameModal = () => {
+            newGameButton.addEventListener('click', () => {
+                component.remove()
+                startGame()
+            })
+        }
+        newGameModal();
+    }
+}
 
 
 const createComponent = (elem, className = [], attributes = {}, textElem = '') => {
@@ -322,10 +396,14 @@ const gameComponent = (arrayGame) => {
         gameCardOpen.append(gameCardOpenImage);
     }
     settingsGame(game);
+
     return game;
 }
 
-const modalComponent = () => {
+const modalComponent = ({
+    type,
+    resultCount
+}) => {
     const popup = createComponent(
         document.createElement('div'),
         ['popup', 'open']
@@ -364,7 +442,7 @@ const modalComponent = () => {
         document.createElement('p'),
         ['popup-body-result__count', 'f-center-center'],
         {},
-        '34'
+        '0'
     )
     const popupBodyResultText = createComponent(
         document.createElement('p'),
@@ -401,6 +479,10 @@ const modalComponent = () => {
 
     popup.append(popupWrapper);
 
+    
+    let resultGame = JSON.parse(localStorage.getItem('memoryLeaders')) || [];
+    resultGame = [...resultGame].sort((a, b) => a.steps - b.steps)
+
     const modalWin = () => {
         
         popupWrapper.append(popupHeader);
@@ -413,6 +495,8 @@ const modalComponent = () => {
         popupBody.append(popupBodyPanel);
 
         popupBodyResult.append(popupBodyResultCount);
+        popupBodyResultCount.textContent = resultCount;
+
         popupBodyResult.append(popupBodyResultText);
         popupBodyResult.append(popupBodyResultImg);
         
@@ -421,7 +505,34 @@ const modalComponent = () => {
         popupBodyPanel.append(popupBodyPanelBtns);
         popupBodyPanelBtns.append(popupBodyPanelButtonNewGame);
         popupBodyPanelBtns.append(popupBodyPanelButtonClose);
+
+
+        
+        console.log([...resultGame]);
+        if(resultGame.length >= 10) {
+            for(let i = 0; i < resultGame.length; i++) {
+                if (resultCount == resultGame[i].steps) {
+                    break;
+                } else if(resultCount <= resultGame[i].steps) {
+                    resultGame.splice(i, 0, {
+                        steps: Number(resultCount),
+                        date: dateCurrent(),
+                    })
+                    if(resultGame.length > 10) {
+                        resultGame.pop();
+                    }
+                    break;
+                }
+            }
+        } else {
+            resultGame.push({
+                steps: Number(resultCount),
+                date: dateCurrent(),
+            })
+        }
+        localStorage.setItem('memoryLeaders', JSON.stringify(resultGame));
     }
+    
     const modalTable = () => {
 
         const popupBodyTable = createComponent(
@@ -445,10 +556,12 @@ const modalComponent = () => {
         popupWrapper.append(popupBody);
         
 
-        let qwe = true;
+        let results = JSON.parse(localStorage.getItem('memoryLeaders'));
 
-        if(qwe) {
+
+        if(results != null) {
             popupBody.append(popupBodyTable);
+            
 
             popupBodyTable.append(popupBodyTableHead);
             let headTable = ['Место', 'Количество ходов', 'Дата']
@@ -485,7 +598,6 @@ const modalComponent = () => {
                     } else {
                         text = '-';
                     }
-
                     const popupBodyTableCell = createComponent(
                         document.createElement('div'),
                         ['popup-body-table-cell', 'f-center-center']
@@ -498,11 +610,24 @@ const modalComponent = () => {
                         text
                     )
 
+                    if(j == 1) {
+                        if(resultGame[i] != undefined) {
+                            popupBodyTableCellText.textContent = resultGame[i].steps;
+                        }
+                    }
+                    if(j == 2) {
+                        if(resultGame[i] != undefined) {
+                            popupBodyTableCellText.textContent = resultGame[i].date;
+                        }
+                    }
+                    //console.log(resultGame[i])
                     popupBodyTableBodyLine.append(popupBodyTableCell);
                     popupBodyTableCell.append(popupBodyTableCellText);
                 }
 
             }
+
+            
             
         } else {
             popupBody.append(popupBodyResultImg);
@@ -518,21 +643,20 @@ const modalComponent = () => {
         popupBodyPanel.append(popupBodyPanelBtns);
         popupBodyPanelBtns.append(popupBodyPanelButtonClose);
     }
-    modalTable()
 
+    switch(type) {
+        case 'win': modalWin();
+        break;
+        case 'leaders': modalTable();
+        break;
+    }
+    settingsModal(popup);
     return popup;
 }
 
+let currentGame = gameComponent(preparationGame());
 
 document.body.append(
     headerComponent(),
-    gameComponent(preparationGame()),
+    currentGame,
 );
-
-/*
-
-headerTag.classList.add('header')
-divTag.classList.add('container')
-headerTag.appendChild(divTag)
-
-document.body.append(headerTag);*/

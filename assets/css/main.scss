@@ -242,6 +242,7 @@ a, span, p, input, button, select, option,textarea, label, blockquote {
         width: 687px;
         background: #fff;
         margin: auto;
+        animation: showModal .2s linear;
     }
     &-header {
         background: #FFDA1F;
@@ -348,5 +349,13 @@ a, span, p, input, button, select, option,textarea, label, blockquote {
             }
         }
         
+    }
+}
+@keyframes showModal {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
     }
 }
