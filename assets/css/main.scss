@@ -351,6 +351,12 @@ a, span, p, input, button, select, option,textarea, label, blockquote {
         
     }
 }
+.footer {
+    &__text {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
 @keyframes showModal {
     0% {
         transform: scale(0);

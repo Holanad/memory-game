@@ -76,13 +76,13 @@ const settingsHeader = (component) => {
 }
 
 const startGame = () => {
-    currentGame.remove()
+    currentGame.remove();
 
     currentGame = gameComponent(preparationGame());
 
-    document.body.append(
-        currentGame,
-    );
+    const footer = document.querySelector('.footer');
+
+    document.body.insertBefore(currentGame, footer);
 }
 
 const settingsGame = (component) => {
@@ -208,7 +208,7 @@ const headerComponent = () => {
         document.createElement("a"), 
         ['header-logo'],
         {
-            href: ''
+            href: 'https://rs.school/ru'
         }
     );
     const headerLogoImageOne = createComponent(
@@ -239,7 +239,7 @@ const headerComponent = () => {
         document.createElement("a"), 
         ['header-logo'],
         {
-            href: ''
+            href: 'https://github.com/Holanad'
         }
     );
     const headerLogoImageTwo = createComponent(
@@ -443,6 +443,10 @@ const modalComponent = ({
         document.createElement('div'),
         ['popup-body-result']
     )
+    const popupBodyResultBlock = createComponent(
+        document.createElement('div'),
+        ['popup-body-result-block']
+    )
     const popupBodyResultImg = createComponent(
         document.createElement('img'),
         ['popup-body-result-person'],
@@ -509,10 +513,12 @@ const modalComponent = ({
         popupBody.append(popupBodyResult);
         popupBody.append(popupBodyPanel);
 
-        popupBodyResult.append(popupBodyResultCount);
+        
+        popupBodyResult.append(popupBodyResultBlock);
+        popupBodyResultBlock.append(popupBodyResultCount);
         popupBodyResultCount.textContent = resultCount;
 
-        popupBodyResult.append(popupBodyResultText);
+        popupBodyResultBlock.append(popupBodyResultText);
         popupBodyResult.append(popupBodyResultImg);
         
 
@@ -688,9 +694,37 @@ const modalComponent = ({
     return popup;
 }
 
+const footerComponent = () => {
+    const footer = createComponent(
+        document.createElement('footer'),
+        ['footer']
+    )
+    const container = createComponent(
+        document.createElement('div'),
+        ['container']
+    )
+    const footerWrapper = createComponent(
+        document.createElement('div'),
+        ['footer-wrapper']
+    )
+    const footerText = createComponent(
+        document.createElement('p'),
+        ['footer__text'],
+        {},
+        "Author Game: Vladislav Volkov (©2026)"
+    )
+    footer.append(container);
+
+    container.append(footerWrapper);
+
+    footerWrapper.append(footerText)
+    return footer;
+}
+
 let currentGame = gameComponent(preparationGame());
 
 document.body.append(
     headerComponent(),
     currentGame,
+    footerComponent()
 );
