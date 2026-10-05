@@ -208,7 +208,7 @@ const headerComponent = () => {
         document.createElement("a"), 
         ['header-logo'],
         {
-            href: ''
+            href: 'https://rs.school/ru'
         }
     );
     const headerLogoImageOne = createComponent(
@@ -239,7 +239,7 @@ const headerComponent = () => {
         document.createElement("a"), 
         ['header-logo'],
         {
-            href: ''
+            href: 'https://github.com/Holanad'
         }
     );
     const headerLogoImageTwo = createComponent(
@@ -688,9 +688,37 @@ const modalComponent = ({
     return popup;
 }
 
+const footerComponent = () => {
+    const footer = createComponent(
+        document.createElement('footer'),
+        ['footer']
+    )
+    const container = createComponent(
+        document.createElement('div'),
+        ['container']
+    )
+    const footerWrapper = createComponent(
+        document.createElement('div'),
+        ['footer-wrapper']
+    )
+    const footerText = createComponent(
+        document.createElement('p'),
+        ['footer__text'],
+        {},
+        "Author Game: Vladislav Volkov (©2026)"
+    )
+    footer.append(container);
+
+    container.append(footerWrapper);
+
+    footerWrapper.append(footerText)
+    return footer;
+}
+
 let currentGame = gameComponent(preparationGame());
 
 document.body.append(
     headerComponent(),
     currentGame,
+    footerComponent()
 );

@@ -700,6 +700,11 @@ a, span, p, input, button, select, option, textarea, label, blockquote {
   background: #dddddd;
 }
 
+.footer__text {
+  text-align: center;
+  margin-top: 20px;
+}
+
 @-webkit-keyframes showModal {
   0% {
     -webkit-transform: scale(0);
