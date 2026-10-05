@@ -40,10 +40,15 @@ cd memory-game
 ```text
 assets/
 ├── css/
-├── fonts/
+│    ├── fonts.css
+│    ├── main.css
+│    ├── media.css
+│    └── normilize.css
 ├── img/
 ├── js/
-├── json/
+│    └── app.js
+└── json/
+     └── cards.json
 index.html
 ```
 
