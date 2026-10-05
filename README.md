@@ -44,7 +44,6 @@ assets/
 ├── img/
 ├── js/
 ├── json/
-├── assets/
 index.html
 ```
 
@@ -59,15 +58,16 @@ index.html
 Результаты сохраняются в LocalStorage браузера.
 
 Сохраняются:
-- количество ходов;
-- дата прохождения.
+- Количество ходов;
+- Дата прохождения.
 
 ## Демо
 https://holanad.github.io/memory-game/
 
 ## Скриншоты
 
-![Главный экран](./assets/screens/main.png)
+![Главный экран](./screens/main.png)
+![Ход игры](./screens/motion.png)
 
 ## Автор
 Vladislav Volkov
