@@ -146,7 +146,20 @@ const settingsModal = (component) => {
     if(closeButton) {
         const closeModal = () => {
             closeButton.addEventListener('click', () => {
-                component.remove()
+                document.querySelector('html').classList.remove('hidden');
+                component.remove();
+            })
+            document.addEventListener('click', (e) => {
+                if(e.target.classList.contains('popup')) {
+                    document.querySelector('html').classList.remove('hidden');
+                    component.remove();
+                }
+            })
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    document.querySelector('html').classList.remove('hidden');
+                    component.remove();
+                }
             })
         }
         closeModal();
@@ -484,6 +497,8 @@ const modalComponent = ({
     resultGame = [...resultGame].sort((a, b) => a.steps - b.steps)
 
     const modalWin = () => {
+        document.querySelector('html').classList.add('hidden');
+        
         
         popupWrapper.append(popupHeader);
         popupHeader.textContent = 'Победаааа!!!';
@@ -506,30 +521,6 @@ const modalComponent = ({
         popupBodyPanelBtns.append(popupBodyPanelButtonNewGame);
         popupBodyPanelBtns.append(popupBodyPanelButtonClose);
 
-
-        
-        console.log([...resultGame]);
-        /*if(resultGame.length >= 10) {
-            for(let i = 0; i < resultGame.length; i++) {
-                if (resultCount == resultGame[i].steps) {
-                    break;
-                } else if(resultCount <= resultGame[i].steps) {
-                    resultGame.splice(i, 0, {
-                        steps: Number(resultCount),
-                        date: dateCurrent(),
-                    })
-                    if(resultGame.length > 10) {
-                        resultGame.pop();
-                    }
-                    break;
-                }
-            }
-        } else {
-            resultGame.push({
-                steps: Number(resultCount),
-                date: dateCurrent(),
-            })
-        }*/
        if(resultGame.length >= 10) {
             for(let i = 0; i < resultGame.length; i++) {
                 if (resultCount == resultGame[i].steps) {
@@ -576,6 +567,7 @@ const modalComponent = ({
     }
     
     const modalTable = () => {
+        document.querySelector('html').classList.add('hidden');
 
         const popupBodyTable = createComponent(
             document.createElement('div'),
