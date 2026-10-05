@@ -7,9 +7,9 @@ const dateCurrent = () => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
 
-    return `${day}.${month}.${year}--`;
+    return `${day}.${month}.${year}`;
 }
-
+/*
 setTimeout(() => {
     document.body.append(
         modalComponent({
@@ -17,7 +17,7 @@ setTimeout(() => {
             resultCount: 16
         })
     );
-}, 5000);
+}, 5000);**/
 const preparationGame = () => {
     let arrayImage = [
         'assets/img/person/error.png',
