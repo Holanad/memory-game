@@ -7,17 +7,17 @@ const dateCurrent = () => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
 
-    return `${day}.${month}.${year}`;
+    return `${day}.${month}.${year}--`;
 }
-/*
+
 setTimeout(() => {
     document.body.append(
         modalComponent({
             type: 'win',
-            resultCount: 3
+            resultCount: 16
         })
     );
-}, 700);*/
+}, 5000);
 const preparationGame = () => {
     let arrayImage = [
         'assets/img/person/error.png',
@@ -77,6 +77,7 @@ const settingsHeader = (component) => {
 
 const startGame = () => {
     currentGame.remove();
+    document.querySelector('html').classList.remove('hidden');
 
     currentGame = gameComponent(preparationGame());
 
@@ -530,7 +531,7 @@ const modalComponent = ({
        if(resultGame.length >= 10) {
             for(let i = 0; i < resultGame.length; i++) {
                 if (resultCount == resultGame[i].steps) {
-                    resultGame.splice(i, 1, {
+                    resultGame.splice(i, 0, {
                         steps: Number(resultCount),
                         date: dateCurrent(),
                     })
@@ -550,12 +551,11 @@ const modalComponent = ({
                 }
             }
         } else {
-            console.log(66)
             let append = 0;
             for(let i = 0; i < resultGame.length; i++) {
                 if (resultCount == resultGame[i].steps) {
                     append++;
-                    resultGame.splice(i, 1, {
+                    resultGame.splice(i, 0, {
                         steps: Number(resultCount),
                         date: dateCurrent(),
                     })
