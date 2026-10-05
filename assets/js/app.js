@@ -76,13 +76,13 @@ const settingsHeader = (component) => {
 }
 
 const startGame = () => {
-    currentGame.remove()
+    currentGame.remove();
 
     currentGame = gameComponent(preparationGame());
 
-    document.body.append(
-        currentGame,
-    );
+    const footer = document.querySelector('.footer');
+
+    document.body.insertBefore(currentGame, footer);
 }
 
 const settingsGame = (component) => {
@@ -443,6 +443,10 @@ const modalComponent = ({
         document.createElement('div'),
         ['popup-body-result']
     )
+    const popupBodyResultBlock = createComponent(
+        document.createElement('div'),
+        ['popup-body-result-block']
+    )
     const popupBodyResultImg = createComponent(
         document.createElement('img'),
         ['popup-body-result-person'],
@@ -509,10 +513,12 @@ const modalComponent = ({
         popupBody.append(popupBodyResult);
         popupBody.append(popupBodyPanel);
 
-        popupBodyResult.append(popupBodyResultCount);
+        
+        popupBodyResult.append(popupBodyResultBlock);
+        popupBodyResultBlock.append(popupBodyResultCount);
         popupBodyResultCount.textContent = resultCount;
 
-        popupBodyResult.append(popupBodyResultText);
+        popupBodyResultBlock.append(popupBodyResultText);
         popupBodyResult.append(popupBodyResultImg);
         
 
