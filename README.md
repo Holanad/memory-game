@@ -68,6 +68,8 @@ https://holanad.github.io/memory-game/
 
 ![Главный экран](./screens/main.png)
 ![Ход игры](./screens/motion.png)
+![Конец игры](./screens/endgame.png)
+![Таблица лидеров](./screens/leaders.png)
 
 ## Автор
 Vladislav Volkov
