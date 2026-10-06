@@ -1,0 +1,174 @@
+@media screen and (max-width: 690px) {
+  a, span, p, input, button, select, option, textarea, label, blockquote {
+    font-size: 16px;
+  }
+  .header-logo {
+    width: 55px;
+    height: 55px;
+  }
+  .header-panel__button {
+    font-size: 18px;
+  }
+  .header-text__main {
+    font-size: 22px;
+  }
+  .header-panel {
+    padding: 10px 0;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .game-wrapper {
+    width: 570px;
+  }
+  .game-block {
+    border: 10px solid rgba(255, 218, 31, 0.2);
+    height: 570px;
+  }
+  .game-list {
+    gap: 10px;
+    padding: 10px;
+  }
+  .popup-wrapper {
+    width: 576px;
+  }
+  .popup-header {
+    font-size: 22px;
+    padding: 12px;
+  }
+  .popup-body {
+    padding: 20px 30px;
+  }
+  .popup-body__title {
+    font-size: 22px;
+  }
+  .popup-body-table-cell {
+    padding: 6px;
+  }
+  .popup-body-table-cell__text {
+    font-size: 16px;
+  }
+  .popup-body-panel__button {
+    padding: 12px;
+  }
+  .popup-body-panel__text {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .header-panel__button {
+    font-size: 16px;
+  }
+  .header-text__main {
+    font-size: 20px;
+  }
+  .header-text__year {
+    font-size: 14px;
+  }
+  .header-panel {
+    padding: 10px 0;
+  }
+  .game-wrapper {
+    width: 100%;
+  }
+  .game-card {
+    width: unset;
+    height: unset;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 20%;
+            flex: 1 1 20%;
+  }
+  .game-card-close {
+    padding: 15px;
+  }
+  .game-card-open {
+    padding: 3px;
+  }
+  .game-block {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .popup-wrapper {
+    width: calc(100% - 20px);
+  }
+  .popup-body-table-cell:nth-child(2) {
+    width: 50%;
+  }
+  .popup-body-table-cell:nth-child(3) {
+    width: 30%;
+  }
+  .popup-body-result {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .popup-body-result-person {
+    position: static;
+    width: 120px;
+    height: 120px;
+  }
+  .popup-body-result__text {
+    font-size: 20px;
+  }
+  .popup-header {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  a, span, p, input, button, select, option, textarea, label, blockquote {
+    font-size: 14px;
+  }
+  .header-logo {
+    width: 35px;
+    height: 35px;
+  }
+  .header-panel__button {
+    font-size: 14px;
+  }
+  .header-text__main {
+    font-size: 18px;
+  }
+  .header-text__year {
+    font-size: 12px;
+  }
+  .header-panel {
+    padding: 10px 0;
+  }
+  .popup-body {
+    padding: 20px;
+  }
+  .popup-body__title {
+    font-size: 20px;
+  }
+  .popup-body-table-cell {
+    padding: 6px;
+  }
+  .popup-body-table-cell__text {
+    font-size: 14px;
+  }
+  .popup-body-panel__title {
+    font-size: 20px;
+  }
+  .popup-body-panel__button {
+    padding: 12px;
+  }
+  .popup-body-panel__text {
+    font-size: 20px;
+  }
+  .popup-header {
+    font-size: 18px;
+  }
+}
+/*# sourceMappingURL=media.css.map */

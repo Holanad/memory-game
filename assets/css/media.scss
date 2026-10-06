@@ -1,0 +1,190 @@
+@media screen and(max-width: 690px) {
+    a, span, p, input, button, select, option, textarea, label, blockquote {
+        font-size: 16px;
+    }
+    .header {
+        &-logo {
+            width: 55px;
+            height: 55px;
+        }
+        &-panel__button {
+            font-size: 18px;
+        }
+        &-text__main {
+            font-size: 22px;
+        }
+        &-panel {
+            padding: 10px 0;
+        }
+    }
+    .container {
+        padding: 0 10px;
+    }
+    .game {
+        &-wrapper {
+            width: 570px;
+        }
+        &-block {
+            border: 10px solid rgba(255, 218, 31, 0.2);
+            height: 570px;
+        }
+        &-list {
+            gap: 10px;
+            padding: 10px;
+        }
+    }
+    .popup {
+        &-wrapper {
+            width: 576px;
+        } 
+        &-header {
+            font-size: 22px;
+            padding: 12px;
+        }
+        &-body {
+            padding: 20px 30px;
+            &__title {
+                font-size: 22px;
+            }
+            &-table-cell {
+                padding: 6px;
+                &__text {
+                    font-size: 16px;
+                }
+            }
+            &-panel {
+                &__button {
+                    padding: 12px;
+                }
+                &__text {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}
+@media screen and(max-width: 600px) {
+    .header {
+        &-logo {
+            width: 40px;
+            height: 40px;
+        }
+        &-panel__button {
+            font-size: 16px;
+        }
+        &-text {
+            &__main {
+                font-size: 20px;
+            }
+            &__year {
+                font-size: 14px;
+            }
+        }
+        &-panel {
+            padding: 10px 0;
+        }
+    }
+    .game {
+        &-wrapper {
+            width: 100%;
+        }
+        &-card {
+            width: unset;
+            height: unset;
+            flex: 1 1 20%;
+            &-close {
+                padding: 15px;
+            }
+            &-open {
+                padding: 3px;
+            }
+        }
+        &-block {
+            height: fit-content;
+        }
+    }
+    .popup {
+        &-wrapper {
+            width: calc(100% - 20px);
+        }
+        &-body {
+            &-table-cell {
+                &:nth-child(2) {
+                    width: 50%;
+                }
+                &:nth-child(3) {
+                    width: 30%;
+                }
+            }
+            &-result {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                &-person {
+                    position: static;
+                    width: 120px;
+                    height: 120px;
+                }
+                &__text {
+                    font-size: 20px;
+                }
+            }
+        }
+        &-header {
+            font-size: 20px;
+        }
+    }
+}
+@media screen and(max-width: 450px) {
+    a, span, p, input, button, select, option, textarea, label, blockquote {
+        font-size: 14px;
+    }
+    .header {
+        &-logo {
+            width: 35px;
+            height: 35px;
+        }
+        &-panel__button {
+            font-size: 14px;
+        }
+        &-text {
+            &__main {
+                font-size: 18px;
+            }
+            &__year {
+                font-size: 12px;
+            }
+        }
+        &-panel {
+            padding: 10px 0;
+        }
+    }
+    .popup {
+        &-body {
+            padding: 20px;
+            &__title {
+                font-size: 20px;
+            }
+            &-table-cell {
+                padding: 6px;
+                &__text {
+                    font-size: 14px;
+                }
+            }
+            &-panel {
+                &__title {
+                    font-size: 20px;
+                }
+                &__button {
+                    padding: 12px;
+                }
+                &__text {
+                    font-size: 20px;
+                }
+            }
+        }
+        &-header {
+            font-size: 18px;
+        }
+    }
+}
